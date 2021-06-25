@@ -7,10 +7,9 @@ rabbitmq-client base spring-rabbit and spring-amqp
 
 ## 特点
 
-- 动态绑定交换机和队列，并监听。
-- 动态取消绑定。
-- Exchange模式为Topic
-- 默认序列化方法为FastJson.
+- 动态创建和删除队列。
+- Exchange模式为**Topic**
+- 默认序列化方法为**Json**.
 
 用法
 --------------------------------------------------
@@ -75,4 +74,3 @@ mvn clean install
 </dependency>
 ```
 
-## 
