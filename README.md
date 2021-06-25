@@ -8,8 +8,8 @@ rabbitmq-client base spring-rabbit and spring-amqp
 ## 特点
 
 - 动态创建和删除队列。
-- Exchange模式为**Topic**
-- 默认序列化方法为**Json**.
+- Exchange模式为 **Topic**
+- 默认序列化方法为 **Json**.
 
 用法
 --------------------------------------------------
@@ -29,25 +29,24 @@ class ApiProcessEventProcessor implements EventProcesser{
 
 ```java
 String defaultHost = "127.0.0.1";
-String defaultExchange = "EXCHANGE_DIRECT_TEST";
-String defaultQueue = "QUEUE_TEST";
 EventControlConfig config = new EventControlConfig(defaultHost);
 DefaultEventController controller = DefaultEventController.getInstance(config);
-EventTemplate eventTemplate = controller.getEopEventTemplate();
 controller.start();
 // 可以先启动，后监听
-controller.add(defaultQueue, defaultExchange, new ApiProcessEventProcessor());
+controller.add("queue.test", "exchange", "routingKey.test", new ApiProcessEventProcessor());
 ```
 
 - 发送字符串消息
 
 ```java
+eventTemplate = controller.getEopEventTemplate();
 eventTemplate.send(defaultQueue, defaultExchange, "hello world");
 ```
 
 - 发送序列化对象消息
 
 ```java
+eventTemplate = controller.getEopEventTemplate();
 eventTemplate.send(defaultQueue, defaultExchange, mockObj());
 ```
 
